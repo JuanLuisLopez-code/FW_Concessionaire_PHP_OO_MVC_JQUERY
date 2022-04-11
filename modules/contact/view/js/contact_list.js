@@ -46,10 +46,13 @@ function check_email() {
 }
 
 function send_email(content_email) {
-    ajaxPromise(friendlyURL("?page=contact&op=send_contact_us"), 'POST', 'JSON', content_email)
+    console.log(content_email)
+    ajaxPromise("index.php?page=contact&op=send_contact_us", 'POST', 'JSON', content_email)
         .then(function(data) {
+            console.log(data)
             toastr.success('Email sended');
         }).catch(function(error, data) {
+            console.log(error)
             toastr.error('Something happend when trying to send.', 'Error');
         });
 }
