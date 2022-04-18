@@ -33,6 +33,14 @@
     
     //IMG
     define('IMG_PATH', SITE_ROOT . 'view/img/');
+
+    //MODEL_HOME
+    define('UTILS_HOME', SITE_ROOT . 'modules/home/utils/');
+    define('DAO_HOME', SITE_ROOT . 'modules/home/model/DAO/');
+    define('BLL_HOME', SITE_ROOT . 'modules/home/model/BLL/');
+    define('MODEL_HOME', SITE_ROOT . 'modules/home/model/model/');
+    define('JS_VIEW_HOME', SITE_PATH . 'modules/home/view/js/');
+    define ('VIEW_PATH_HOME', SITE_ROOT . 'modules/home/view/inc/');
     
     //MODEL_CONTACT
     define('JS_VIEW_CONTACT', SITE_PATH . 'modules/contact/view/js/');

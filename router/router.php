@@ -1,7 +1,7 @@
 <?php
-require_once('paths.php');
-require_once('utils/common.inc.php');
-    // require 'autoload.php';
+// require_once('paths.php');
+// require_once('utils/common.inc.php');
+    require 'autoload.php';
 
     ob_start();
     session_start();
@@ -24,7 +24,7 @@ require_once('utils/common.inc.php');
             if(isset($_GET['page'])){
                 $this -> uriModule = $_GET['page'];
             }else{
-                $this -> uriModule = 'contact';
+                $this -> uriModule = 'home';
             }
             if(isset($_GET['op'])){
                 $this -> uriFunction = ($_GET['op'] === "") ? 'view' : $_GET['op'];
@@ -47,8 +47,6 @@ require_once('utils/common.inc.php');
                 foreach ($modules as $row) {
                     if (in_array($this -> uriModule, (Array) $row -> uri)) {
                         $path = MODULES_PATH . $row -> name . '/controller/controller_' . (String) $row -> name . '.class.php';
-                        // echo json_encode($path);
-                        //     exit;
                         if (file_exists($path)) {
                             
                             require_once($path);

@@ -10,7 +10,7 @@ function check_email() {
         $(".error").remove();
 
         var pname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
-        var pmessage = /^[0-9A-Za-z\s]{20,100}$/;
+        // var pmessage = /^[0-9A-Za-z\s]{20,100}$/;
         var pmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
         if ($("#name").val() === "" || $("#name").val() === "Introduce tu nombre") {
@@ -31,13 +31,6 @@ function check_email() {
             $("#matter").focus().after("<span class='error'>Seleccione un asunto</span>");
             return false;
         }
-        if ($("#message").val() === "" || $("#message").val() === "Seleccione un asunto") {
-            $("#message").focus().after("<span class='error'>Introduzca su mensaje</span>");
-            return false;
-        } else if (!pmessage.test($("#message").val())) {
-            $("#message").focus().after("<span class='error'>El mensaje tiene un minimo de 20 caracteres</span>");
-            return false;
-        }
 
         if (result) {
             send_email({ name: $("#name").val(), email: $("#email").val(), matter: $("#matter").val(), message: $("#message").val() });
@@ -48,8 +41,9 @@ function check_email() {
 function send_email(content_email) {
     console.log(content_email)
     ajaxPromise("index.php?page=contact&op=send_contact_us", 'POST', 'JSON', content_email)
+        // ajaxPromise(friendlyURL("?page=contact&op=send_contact_us"), 'POST', 'JSON', content_email)
         .then(function(data) {
-            console.log(data)
+            // console.log(friendlyURL("?page=contact&op=send_contact_us"))
             toastr.success('Email sended');
         }).catch(function(error, data) {
             console.log(error)
