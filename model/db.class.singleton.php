@@ -29,14 +29,16 @@
         }
 
         public static function getInstance() {
-            if (!(self::$_instance instanceof self))
-                self::$_instance = new self();
-            return self::$_instance;
+            if (!(self::$_instance instanceof self)) {
+				self::$_instance = new self();
+			}
+			return self::$_instance;
         }
 
         private function conectar() {
             $this->link = new mysqli($this->server, $this->user, $this->password);
             $this->link->select_db($this->database);
+            
         }
 
         public function ejecutar($sql) {

@@ -1,3 +1,4 @@
 .htaccess
 utils/vendor
 utils/mail.ini
+**.ini
