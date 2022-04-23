@@ -41,6 +41,14 @@
     define('MODEL_HOME', SITE_ROOT . 'modules/home/model/model/');
     define('JS_VIEW_HOME', SITE_PATH . 'modules/home/view/js/');
     define ('VIEW_PATH_HOME', SITE_ROOT . 'modules/home/view/inc/');
+
+    //MODEL_SHOP
+    define('UTILS_SHOP', SITE_ROOT . 'modules/shop/utils/');
+    define('DAO_SHOP', SITE_ROOT . 'modules/shop/model/DAO/');
+    define('BLL_SHOP', SITE_ROOT . 'modules/shop/model/BLL/');
+    define('MODEL_SHOP', SITE_ROOT . 'modules/shop/model/model/');
+    define('JS_VIEW_SHOP', SITE_PATH . 'modules/shop/view/js/');
+    define ('VIEW_PATH_SHOP', SITE_ROOT . 'modules/shop/view/inc/');
     
     //MODEL_CONTACT
     define('JS_VIEW_CONTACT', SITE_PATH . 'modules/contact/view/js/');
