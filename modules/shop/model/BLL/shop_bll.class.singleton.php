@@ -24,8 +24,8 @@
 			return $this -> dao -> select_details($this->db, $args);
 		}
 
-		public function get_filter_BLL($args) {
-			return $this -> dao -> select_filter($this->db, $args);
+		public function get_filter_BLL($args, $total_prod, $items_page) {
+			return $this -> dao -> select_filter($this->db, $args, $total_prod, $items_page);
 		}
 
 		public function get_count_BLL() {

@@ -19,7 +19,7 @@
                 self::load_error();
             }
         }
-        public static function load_model($model, $function = null, $args = null) {
+        public static function load_model($model, $function = null, $args = null, $total_prod = null, $items_page = null) {
             $dir = explode('_', $model);
             $path = constant('MODEL_' . strtoupper($dir[0])) .  $model . '.class.singleton.php';
             if (file_exists($path)) {
@@ -27,7 +27,7 @@
                 if (method_exists($model, $function)) {
                     $obj = $model::getInstance();
                     if ($args != null) {
-                        return call_user_func(array($obj, $function), $args);
+                        return call_user_func(array($obj, $function), $args, $total_prod, $items_page);
                     }
                     return call_user_func(array($obj, $function));
                 }

@@ -14,7 +14,7 @@
         }
 
         function filter() {
-            echo json_encode(common::load_model('shop_model', 'get_filter', [$_POST['filter']]));
+            echo json_encode(common::load_model('shop_model', 'get_filter', $_POST['filter'],$_POST['total_prod'],$_POST['items_page']));
         }
         
         function count() {

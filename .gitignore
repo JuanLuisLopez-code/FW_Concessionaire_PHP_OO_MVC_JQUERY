@@ -1,4 +1,4 @@
 .htaccess
 utils/vendor
 utils/mail.ini
-**.ini
+model/db.ini

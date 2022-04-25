@@ -30,26 +30,27 @@
             return $db->listar($stmt);
         }
 
-        public function select_filter($db, $args) {
-            $sql = 'SELECT c.*, i.img, ca.cat_name, t.type_name, b.brand_name
+        public function select_filter($db, $args, $total_prod, $items_page) {
+            $sql = "SELECT c.*, i.img, ca.cat_name, t.type_name, b.brand_name
             FROM car c INNER JOIN car_img i INNER JOIN categoria ca INNER JOIN type t INNER JOIN brand b
-            ON c.id = i.car AND  i.img LIKE ("%1%") AND c.categoria = ca.id_categoria AND c.combustible = t.id_type AND c.marca = b.id_brand';
+            ON c.id = i.car AND  i.img LIKE ('%1%') AND c.categoria = ca.id_categoria AND c.combustible = t.id_type AND c.marca = b.id_brand";
 
                 for ($i=0; $i < count($args); $i++){
                     if ($i==0){
-                        if ($args[0][$i][0] == 'orden'){
-                            $sql.= " ORDER BY " . $args[0][$i][1] . " ASC";
+                        if ($args[$i][0] == 'orden'){
+                            $sql.= " ORDER BY " . $args[$i][1] . " ASC";
 
                         }else{
-                        $sql.= " WHERE c." . $args[0][$i][0] . "=" . $args[0][$i][1];
+                        $sql.= " WHERE c." . $args[$i][0] . "=" . $args[$i][1];
                         }
                     }else {
                         if ($args[$i][0] == 'orden'){
-                            $sql.= " ORDER BY " . $args[0][$i][1] . " ASC";
+                            $sql.= " ORDER BY " . $args[$i][1] . " ASC";
 
-                        }else{$sql.= " AND c." . $args[0][$i][0] . "=" . $args[0][$i][1];}
+                        }else{$sql.= " AND c." . $args[$i][0] . "=" . $args[$i][1];}
                     }        
                 }
+                $sql.= " LIMIT $total_prod, $items_page";
 
             $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);

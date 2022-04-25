@@ -1,4 +1,4 @@
-function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3) {
+function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, filtering = false) {
     localStorage.removeItem('details');
     let redirect = [];
     redirect.push("index.php?page=shop&op=view");
@@ -20,6 +20,9 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3) 
     }
     var url2 = durl;
     var filter = sData;
+    if (filtering) {
+        total_prod = 0;
+    }
     ajaxPromise(url2, 'POST', 'JSON', { 'filter': filter, 'total_prod': total_prod, 'items_page': items_page })
         .then(function(shop) {
             console.log(shop);
@@ -307,8 +310,9 @@ function filter_button() {
             filter.push(['orden', localStorage.getItem('filter_order')])
         }
         if (filter) {
-            ajaxForSearch("index.php?page=shop&op=filter", filter);
-            // pagination(filter);
+            localStorage.removeItem('move');
+            ajaxForSearch("index.php?page=shop&op=filter", filter, 0, 3, true);
+            pagination(filter);
         } else {
             ajaxForSearch("index.php?page=shop&op=shopAll");
         }

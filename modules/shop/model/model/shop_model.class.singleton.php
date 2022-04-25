@@ -22,8 +22,8 @@
             return $this -> bll -> get_details_BLL($args);
         }
 
-        public function get_filter($args) {            
-            return $this -> bll -> get_filter_BLL($args);
+        public function get_filter($args, $total_prod, $items_page) {     
+            return $this -> bll -> get_filter_BLL($args, $total_prod, $items_page);
         }
         
         public function get_count() {
