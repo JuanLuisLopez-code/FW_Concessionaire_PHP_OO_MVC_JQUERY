@@ -17,9 +17,8 @@ function ajaxPromise(sUrl, sType, sTData, sData = undefined) {
 function move_shop() {
     $(document).on('click', '.shop', function() {
         window.location.href = "index.php?page=shop&op=view";
-        // window.location.href = "index.php?page=shop&op=view";
-        // localStorage.removeItem('details')
-        // localStorage.removeItem('move');
+        localStorage.removeItem('details')
+        localStorage.removeItem('move');
     });
 }
 

@@ -14,8 +14,24 @@
             return self::$_instance;
         }
 
-        public function get_shopAll() {
-            return $this -> bll -> get_shopAll_BLL();
+        public function get_shopAll($args) {
+            return $this -> bll -> get_shopAll_BLL($args);
+        }
+
+        public function get_details($args) {            
+            return $this -> bll -> get_details_BLL($args);
+        }
+
+        public function get_filter($args) {            
+            return $this -> bll -> get_filter_BLL($args);
+        }
+        
+        public function get_count() {
+            return $this -> bll -> get_count_BLL();
+        }
+
+        public function get_count_filter($args) {            
+            return $this -> bll -> get_count_filter_BLL($args);
         }
 
     }

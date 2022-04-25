@@ -6,19 +6,23 @@
         }
 
         function shopAll() {
-            echo json_encode(common::load_model('shop_model', 'get_shopAll'));
+            echo json_encode(common::load_model('shop_model', 'get_shopAll', [$_POST['total_prod'],$_POST['items_page']]));
         }
 
-        // function filters() {
-        //     echo json_encode(common::load_model('shop_model', 'get_filters'));
-        // }
+        function details() {
+            echo json_encode(common::load_model('shop_model', 'get_details', [$_POST['id']]));
+        }
 
-        // function list_products() {
-        //     echo json_encode(common::load_model('shop_model', 'get_list_products', [$_POST['items_page'], $_POST['total_prod']]));
-        // }
+        function filter() {
+            echo json_encode(common::load_model('shop_model', 'get_filter', [$_POST['filter']]));
+        }
+        
+        function count() {
+            echo json_encode(common::load_model('shop_model', 'get_count'));
+        }
 
-        // function list_filters_products() {
-        //     echo json_encode(common::load_model('shop_model', 'get_list_filters_products', [$_POST['items_page'], $_POST['total_prod'], $_POST['filters']]));
-        // }
+        function count_filter() {
+            echo json_encode(common::load_model('shop_model', 'get_count_filter', [$_POST['filter']]));
+        }
     }
 ?>

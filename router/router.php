@@ -1,6 +1,4 @@
 <?php
-// require_once('paths.php');
-// require_once('utils/common.inc.php');
     require 'autoload.php';
 
     ob_start();

@@ -1,7 +1,7 @@
 function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3) {
     localStorage.removeItem('details');
     let redirect = [];
-    redirect.push("index.php?modules=shop&op=list");
+    redirect.push("index.php?page=shop&op=view");
     if (total_prod != 0) {
         if (localStorage.getItem('id')) {
             var move_id = JSON.parse(localStorage.getItem('id'))
@@ -63,9 +63,10 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3) 
             if (localStorage.getItem('id')) {
                 document.getElementById(move_id).scrollIntoView();
             }
-            load_likes();
+            // load_likes();
             mapBox_all(shop);
-        }).catch(function(e) {
+        }).catch(function(error) {
+            console.log(error)
             $("#containerShop").empty();
             $('<div></div>').appendTo('#containerShop')
                 .html('<h1>No hay coches con estos filtros</h1>');
@@ -86,9 +87,8 @@ function shopAll() {
         } else if (filters_search != undefined) {
             load_search();
         } else if (filtro != undefined) {
-            ajaxForSearch("modules/shop/crtl/crtl_shop.php?op=filter", filtro);
+            ajaxForSearch("index.php?page=shop&op=filter", filtro);
         } else {
-            // index.php?page=shop&op=view
             ajaxForSearch("index.php?page=shop&op=shopAll");
         }
     }
@@ -101,7 +101,7 @@ function details(id) {
         location.reload();
     });
 
-    ajaxPromise('modules/shop/crtl/crtl_shop.php?op=details&id=' + id, 'POST', 'JSON')
+    ajaxPromise("index.php?page=shop&op=details", 'POST', 'JSON', { 'id': id })
         .then(function(id) {
             $('<div></div>').appendTo('#containerShop')
                 .html('<div class="page">' +
@@ -151,7 +151,6 @@ function details(id) {
             });
             if (localStorage.getItem('details')) {
                 localStorage.removeItem('details')
-                console.log(localStorage.getItem('details'))
             } else {
                 localStorage.setItem('details', id[0].id);
             }
@@ -170,7 +169,7 @@ function details(id) {
         }
     })
 }
-
+//
 function moreCars(id, move = 0) {
     var xpage = 3;
     ajaxPromise('modules/shop/crtl/crtl_shop.php?op=moreCars', 'POST', 'JSON', { 'id': id, 'move': move, 'xpage': xpage })
@@ -217,7 +216,7 @@ function moreCars(id, move = 0) {
             $('<h1>No hay más coches</h1>').appendTo('#moreCars')
         });
 }
-
+//
 function visitas(id) {
     ajaxPromise('modules/shop/crtl/crtl_shop.php?op=visitas', 'POST', 'JSON', { id })
         .then(function(id) {}).catch(function() {});
@@ -266,7 +265,7 @@ function print_filters() {
             '<button class="filter_button button_spinner" id="Button_filter">Filter</button>' +
             '<button class="filter_remove" id="Remove_filter">Remove</button>');
 }
-
+//
 function filter_button() {
     $(function() {
         $('.filter_type').change(function() {
@@ -308,10 +307,10 @@ function filter_button() {
             filter.push(['orden', localStorage.getItem('filter_order')])
         }
         if (filter) {
-            ajaxForSearch("modules/shop/crtl/crtl_shop.php?op=filter", filter);
-            pagination(filter);
+            ajaxForSearch("index.php?page=shop&op=filter", filter);
+            // pagination(filter);
         } else {
-            ajaxForSearch("modules/shop/crtl/crtl_shop.php?op=shopAll");
+            ajaxForSearch("index.php?page=shop&op=shopAll");
         }
         highlight(filter);
     });
@@ -324,17 +323,17 @@ function filter_button() {
         localStorage.removeItem('filters_search');
         filter.length = 0;
         if (filter == 0) {
-            ajaxForSearch("modules/shop/crtl/crtl_shop.php?op=shopAll");
+            ajaxForSearch("index.php?page=shop&op=shopAll");
             highlight(filter);
         }
     });
 }
-
+//
 function load_details() {
     $(document).on('click', '.link', function() {
         var id = this.getAttribute('id');
         details(id);
-        visitas(id);
+        // visitas(id);
     })
 }
 
@@ -422,7 +421,7 @@ function load_salto(total_prod = 0, items_page = 3) {
             window.location.href = "index.php?modules=exception&op=503&error=fail_salto&type=503";
         });
 }
-
+//
 function load_search(total_prod = 0, items_page = 3) {
     var filters_search = JSON.parse(localStorage.getItem('filters_search'));
     ajaxPromise('modules/shop/crtl/crtl_shop.php?op=search', 'POST', 'JSON', { 'filters_search': filters_search, 'total_prod': total_prod, 'items_page': items_page })
@@ -480,12 +479,13 @@ function pagination(filter) {
     } else if (filtros) {
         var url = "modules/shop/crtl/crtl_shop.php?op=count_home";
     } else if (filter != undefined) {
-        var url = "modules/shop/crtl/crtl_shop.php?op=count_filters";
+        var url = "index.php?page=shop&op=count_filter";
     } else {
-        var url = "modules/shop/crtl/crtl_shop.php?op=count";
+        var url = "index.php?page=shop&op=count";
     }
     ajaxPromise(url, 'POST', 'JSON', { 'filter': filter, 'filtros': filtros, 'filters_search': filters_search })
         .then(function(data) {
+            console.log(data)
             var total_pages = 0;
             var total_prod = data[0].contador;
             if (total_prod >= 3) {
@@ -499,16 +499,15 @@ function pagination(filter) {
                 maxVisible: total_pages
             }).on('page', function(event, num) {
                 total_prod = 3 * (num - 1);
-                console.log(total_prod)
                 let redirect = [];
-                redirect.push("index.php?modules=shop&op=list");
+                redirect.push("index.php?page=shop&op=view");
                 redirect.push(total_prod);
                 localStorage.setItem('move', JSON.stringify(redirect));
                 localStorage.removeItem('id');
                 if (filter != undefined) {
-                    ajaxForSearch("modules/shop/crtl/crtl_shop.php?op=filter", filter, total_prod, 3);
+                    ajaxForSearch("index.php?page=shop&op=filter", filter, total_prod, 3);
                 } else {
-                    ajaxForSearch("modules/shop/crtl/crtl_shop.php?op=shopAll", undefined, total_prod, 3);
+                    ajaxForSearch("index.php?page=shop&op=shopAll", undefined, total_prod, 3);
                 }
                 $('html, body').animate({ scrollTop: $(".wrap") });
             });
@@ -571,11 +570,10 @@ function click_likes() {
     });
 }
 $(document).ready(function() {
-    // console.log("hola");
     shopAll();
-    // load_details();
-    // print_filters();
-    // filter_button();
-    // pagination();
+    load_details();
+    print_filters();
+    filter_button();
+    pagination();
     // click_likes();
 });

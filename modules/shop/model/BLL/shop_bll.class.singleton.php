@@ -16,8 +16,24 @@
 			return self::$_instance;
 		}
 
-		public function get_shopAll_BLL() {
-			return $this -> dao -> select_shopAll($this->db);
+		public function get_shopAll_BLL($args) {
+			return $this -> dao -> select_shopAll($this->db, $args);
+		}
+
+		public function get_details_BLL($args) {
+			return $this -> dao -> select_details($this->db, $args);
+		}
+
+		public function get_filter_BLL($args) {
+			return $this -> dao -> select_filter($this->db, $args);
+		}
+
+		public function get_count_BLL() {
+			return $this -> dao -> select_count($this->db);
+		}
+		
+		public function get_count_filter_BLL($args) {
+			return $this -> dao -> select_count_filter($this->db, $args);
 		}
 	}
 ?>

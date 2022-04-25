@@ -8,4 +8,20 @@
         <name>shopAll</name>
         <uri>shopAll</uri>
     </function>
+    <function>
+        <name>details</name>
+        <uri>details</uri>
+    </function>
+    <function>
+        <name>filter</name>
+        <uri>filter</uri>
+    </function>
+    <function>
+        <name>count</name>
+        <uri>count</uri>
+    </function>
+    <function>
+        <name>count_filter</name>
+        <uri>count_filter</uri>
+    </function>
 </functions>
