@@ -428,7 +428,7 @@ function load_salto(total_prod = 0, items_page = 3) {
 //
 function load_search(total_prod = 0, items_page = 3) {
     var filters_search = JSON.parse(localStorage.getItem('filters_search'));
-    ajaxPromise('modules/shop/crtl/crtl_shop.php?op=search', 'POST', 'JSON', { 'filters_search': filters_search, 'total_prod': total_prod, 'items_page': items_page })
+    ajaxPromise('index.php?page=shop&op=filters_search', 'POST', 'JSON', { 'filters_search': filters_search, 'total_prod': total_prod, 'items_page': items_page })
         .then(function(shop) {
             $("#containerShop").empty();
             for (row in shop) {
@@ -479,7 +479,7 @@ function pagination(filter) {
     var filtros = JSON.parse(localStorage.getItem('filters'));
     var filter = filter
     if (filters_search) {
-        var url = "modules/shop/crtl/crtl_shop.php?op=count_search";
+        var url = "index.php?page=shop&op=count_search";
     } else if (filtros) {
         var url = "modules/shop/crtl/crtl_shop.php?op=count_home";
     } else if (filter != undefined) {
@@ -508,7 +508,9 @@ function pagination(filter) {
                 redirect.push(total_prod);
                 localStorage.setItem('move', JSON.stringify(redirect));
                 localStorage.removeItem('id');
-                if (filter != undefined) {
+                if (filters_search) {
+                    load_search(total_prod, 3);
+                } else if (filter != undefined) {
                     ajaxForSearch("index.php?page=shop&op=filter", filter, total_prod, 3);
                 } else {
                     ajaxForSearch("index.php?page=shop&op=shopAll", undefined, total_prod, 3);

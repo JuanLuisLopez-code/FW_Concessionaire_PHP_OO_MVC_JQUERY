@@ -49,6 +49,13 @@
     define('MODEL_SHOP', SITE_ROOT . 'modules/shop/model/model/');
     define('JS_VIEW_SHOP', SITE_PATH . 'modules/shop/view/js/');
     define ('VIEW_PATH_SHOP', SITE_ROOT . 'modules/shop/view/inc/');
+
+    //MODEL_SEARCH
+    define('UTILS_SEARCH', SITE_ROOT . 'modules/search/utils/');
+    define('DAO_SEARCH', SITE_ROOT . 'modules/search/model/DAO/');
+    define('BLL_SEARCH', SITE_ROOT . 'modules/search/model/BLL/');
+    define('MODEL_SEARCH', SITE_ROOT . 'modules/search/model/model/');
+    define('JS_VIEW_SEARCH', SITE_PATH . 'modules/search/view/js/');
     
     //MODEL_CONTACT
     define('JS_VIEW_CONTACT', SITE_PATH . 'modules/contact/view/js/');

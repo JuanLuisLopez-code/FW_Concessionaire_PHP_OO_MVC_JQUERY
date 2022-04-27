@@ -1,7 +1,6 @@
 function loadSlider() {
     ajaxPromise('index.php?page=home&op=carousel', 'GET', 'JSON')
         .then(function(brand) {
-            console.log(brand)
             count = 0;
             for (row in brand) {
                 if (count == 0) {

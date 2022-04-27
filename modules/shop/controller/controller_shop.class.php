@@ -14,7 +14,7 @@
         }
 
         function filter() {
-            echo json_encode(common::load_model('shop_model', 'get_filter', $_POST['filter'],$_POST['total_prod'],$_POST['items_page']));
+            echo json_encode(common::load_model('shop_model', 'get_filter', $_POST['filter'], $_POST['total_prod'],$_POST['items_page']));
         }
         
         function count() {
@@ -23,6 +23,14 @@
 
         function count_filter() {
             echo json_encode(common::load_model('shop_model', 'get_count_filter', [$_POST['filter']]));
+        }
+
+        function filters_search() {
+            echo json_encode(common::load_model('shop_model', 'get_search', $_POST['filters_search'], $_POST['total_prod'],$_POST['items_page']));
+        }
+
+        function count_search() {
+            echo json_encode(common::load_model('shop_model', 'get_count_search', $_POST['filters_search']));
         }
     }
 ?>

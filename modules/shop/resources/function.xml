@@ -24,4 +24,12 @@
         <name>count_filter</name>
         <uri>count_filter</uri>
     </function>
+    <function>
+        <name>filters_search</name>
+        <uri>filters_search</uri>
+    </function>
+    <function>
+        <name>count_search</name>
+        <uri>count_search</uri>
+    </function>
 </functions>

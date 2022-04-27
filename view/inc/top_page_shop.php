@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
+    <script src="modules/search/model/model/crtl_search.js"></script>
 
     <!-- CSS -->
     <link href="modules/shop/view/css/css_general.css" rel="stylesheet" type="text/css" />
