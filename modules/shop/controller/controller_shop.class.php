@@ -32,5 +32,9 @@
         function count_search() {
             echo json_encode(common::load_model('shop_model', 'get_count_search', $_POST['filters_search']));
         }
+
+        function visitas() {
+            echo json_encode(common::load_model('shop_model', 'get_visitas', $_POST['id']));
+        }
     }
 ?>

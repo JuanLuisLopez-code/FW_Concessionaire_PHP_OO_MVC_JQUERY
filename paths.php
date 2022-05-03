@@ -56,6 +56,14 @@
     define('BLL_SEARCH', SITE_ROOT . 'modules/search/model/BLL/');
     define('MODEL_SEARCH', SITE_ROOT . 'modules/search/model/model/');
     define('JS_VIEW_SEARCH', SITE_PATH . 'modules/search/view/js/');
+
+    //MODEL_LOGIN
+    define('UTILS_LOGIN', SITE_ROOT . 'modules/login/utils/');
+    define('DAO_LOGIN', SITE_ROOT . 'modules/login/model/DAO/');
+    define('BLL_LOGIN', SITE_ROOT . 'modules/login/model/BLL/');
+    define('MODEL_LOGIN', SITE_ROOT . 'modules/login/model/model/');
+    define('JS_VIEW_LOGIN', SITE_PATH . 'modules/login/view/js/');
+    define ('VIEW_PATH_LOGIN', SITE_ROOT . 'modules/login/view/inc/');
     
     //MODEL_CONTACT
     define('JS_VIEW_CONTACT', SITE_PATH . 'modules/contact/view/js/');

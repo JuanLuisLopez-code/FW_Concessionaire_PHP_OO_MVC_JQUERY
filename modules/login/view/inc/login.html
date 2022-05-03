@@ -1,0 +1,89 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js" integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<link href="view/css/css_general.css" rel="stylesheet" type="text/css" />
+<link href="modules/login/view/css/login.css" rel="stylesheet" type="text/css" />
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="view/js/promise.js"></script>
+<script src="view/js/move.js"></script>
+<script src="/framework_php_GitHub/modules/car/model/valid_car.js"></script>
+<script src="/framework_php_GitHub/modules/login/model/crtl_register.js"></script>
+<script src="/framework_php_GitHub/modules/login/model/crtl_login.js"></script> -->
+
+
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-form">
+            <form id="login__form" method="post">
+                <div class="form__content">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="user_login" class="label">Username</label>
+                            <input id="user_login" type="text" class="input" name="user_login" autofocus>
+                            <font color="red">
+                                <span id="error_user_login" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <label for="pass_login" class="label">Password</label>
+                            <input id="pass_login" type="password" class="input" data-type="password" name="passwd">
+                            <font color="red">
+                                <span id="error_pass_login" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <input type="button" class="button" id="login" value="Enter">
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <a href="#forgot">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form id="register__form" method="post">
+                <div class="form__content">
+                    <div class="sign-up-htm">
+                        <div class="group">
+                            <label for="user" class="label">Username</label>
+                            <input id="user" type="text" class="input" name="user" value="">
+                            <font color="red">
+                                <span id="error_username" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Password</label>
+                            <input id="pass" type="password" class="input" name="pass" value="">
+                            <font color="red">
+                                <span id="error_password" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Email Address</label>
+                            <input id="email" type="email" class="input" name="email" value="">
+                            <font color="red">
+                                <span id="error_email" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <input class="button" id="register" type="button" value="Enter" />
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <label for="tab-1">Already Member?</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

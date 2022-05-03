@@ -16,7 +16,7 @@
 
     <!--========== MAIN JS ==========-->
     <script src="<?php echo SITE_PATH ?>view/js/main.js"></script>
-    <script src="<?php echo SITE_PATH ?>modules/home/model/model/crtl_home.js"></script>
+    <script src="<?php echo SITE_PATH ?>modules/home/view/js/crtl_home.js"></script>
 
 
 </head>

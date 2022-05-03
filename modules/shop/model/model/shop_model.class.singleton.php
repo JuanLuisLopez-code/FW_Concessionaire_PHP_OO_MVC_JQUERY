@@ -41,5 +41,9 @@
         public function get_count_search($args) {          
             return $this -> bll -> get_count_search_BLL($args);
         }
+
+        public function get_visitas($args) {          
+            return $this -> bll -> get_visitas_BLL($args);
+        }
     }
 ?>

@@ -221,7 +221,7 @@ function moreCars(id, move = 0) {
 }
 //
 function visitas(id) {
-    ajaxPromise('modules/shop/crtl/crtl_shop.php?op=visitas', 'POST', 'JSON', { id })
+    ajaxPromise('index.php?page=shop&op=visitas', 'POST', 'JSON', { id })
         .then(function(id) {}).catch(function() {});
 }
 
@@ -337,7 +337,7 @@ function load_details() {
     $(document).on('click', '.link', function() {
         var id = this.getAttribute('id');
         details(id);
-        // visitas(id);
+        visitas(id);
     })
 }
 

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 
-    <script src="modules/search/model/model/crtl_search.js"></script>
+    <script src="modules/search/view/js/crtl_search.js"></script>
 
     <!-- CSS -->
     <link href="modules/shop/view/css/css_general.css" rel="stylesheet" type="text/css" />
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="modules/shop/view/css/style.css">
 
     <!--========== JS ==========-->
-    <script src="<?php echo SITE_PATH ?>modules/shop/model/model/crtl_shop.js"></script>
+    <script src="<?php echo SITE_PATH ?>modules/shop/view/js/crtl_shop.js"></script>
     <script src="<?php echo SITE_PATH ?>view/js/main.js"></script>
 
 </head>

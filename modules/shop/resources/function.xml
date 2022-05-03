@@ -32,4 +32,8 @@
         <name>count_search</name>
         <uri>count_search</uri>
     </function>
+    <function>
+        <name>visitas</name>
+        <uri>visitas</uri>
+    </function>
 </functions>

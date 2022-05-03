@@ -43,5 +43,9 @@
 		public function get_count_search_BLL($args) {
 			return $this -> dao -> select_count_search($this->db, $args);
 		}
+
+		public function get_visitas_BLL($args) {
+			return $this -> dao -> select_visitas($this->db, $args);
+		}
 	}
 ?>

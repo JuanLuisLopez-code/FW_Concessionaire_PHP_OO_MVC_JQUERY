@@ -163,5 +163,13 @@
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }
+
+        public function select_visitas($db, $args) {
+            $sql = "UPDATE car c
+            SET visitas = visitas+1
+            WHERE c.id = '$args'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
     }
 

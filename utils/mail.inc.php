@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 use \Mailjet\Resources;
     class mail {
-        public static function send_email($email) {
+        public static function send_email($user, $email, $email_token_register) {
             $email_token = parse_ini_file(UTILS . 'mail.ini');
             $mj = new \Mailjet\Client($email_token['e_1'],$email_token['e_2'],true,['version' => 'v3.1']);
             $body = [
@@ -14,22 +14,23 @@ use \Mailjet\Resources;
                   ],
                   'To' => [
                     [
-                      'Email' => "juanluislopezdaw@gmail.com",
-                      'Name' => "Juan Luis"
+                      'Email' => "$email",
+                      'Name' => "$user"
                     ]
                   ],
                   'Subject' => "Greetings from Mailjet.",
                   'TextPart' => "My first Mailjet email",
-                  'HTMLPart' => "<h3>''</h3><br />May the delivery force be with you!",
+                  'HTMLPart' => "<h3>'Registro V2'</h3><br/>
+                                 <p>
+                                 <a href=http://localhost/FW_PHP_OO_JQuery/index.php?page=login&op=view&$email_token_register&verify> Pulse aqui para validar su registro </a>
+                                 </p>",
                   'CustomID' => "AppGettingStartedTest"
                 ]
               ]
             ];
             $response = $mj->post(Resources::$Email, ['body' => $body]);
             $response->success();
-            echo json_encode($response->getData());
-            exit;
-            // return $response->getData();
-
+            // return ($response->getData());
+            return $response->getData();
         }
     }
