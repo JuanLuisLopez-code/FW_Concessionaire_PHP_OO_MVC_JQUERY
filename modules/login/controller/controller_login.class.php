@@ -11,5 +11,13 @@
         function verify_email() {
             echo json_encode(common::load_model('login_model', 'get_verify_email', $_POST['token_email_verify'], $_POST['type']));
         }
+
+        function login_c() {
+            echo json_encode(common::load_model('login_model', 'get_login', $_POST['user_login'], $_POST['passwd']));
+        }
+
+        function token_c() {
+            echo json_encode(common::load_model('login_model', 'get_token_c', $_POST['token']));
+        }
     }
 ?>

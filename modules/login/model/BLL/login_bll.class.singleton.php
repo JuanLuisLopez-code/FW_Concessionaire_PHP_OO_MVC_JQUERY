@@ -1,4 +1,5 @@
 <?php
+@session_start();
 	class login_bll {
 		private $dao;
 		private $db;
@@ -45,7 +46,37 @@
 				return 'verify';
 			}
 			return 'ya esta verificado';
-			}			
+		}
+		
+		public function get_login_BLL($user, $pass) {
+			if ($rdo = $this -> dao -> select_user ($this -> db, $user)){
+				if (password_verify($pass,$rdo[0]['passwd'])) {
+                    $_SESSION['username'] = $rdo[0]['username'];
+					$_SESSION['tiempo'] = time();
+
+					return middleware::midd_encode($rdo[0]['username']);
+					
+                }else {
+                    echo json_encode("contraseña incorrecta");
+                    exit;
+                }
+			}else{
+				return "user no existe";
+			}
+		}
+		
+		public function get_token_c_BLL($token) {
+
+			$check = middleware::midd_decode($token);
+			$exp_time = json_decode($check);
+			//comprobar si el token ha expirado o aun esta activo
+			if($exp_time->exp == null || $exp_time->exp < time()){
+				return "Tiempo excedido";
+			} else {
+				$user_check = json_decode($check);
+				return $this -> dao -> select_user ($this->db, $user_check->name);
+			}
+		}
 		
 	}
 ?>

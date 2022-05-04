@@ -26,8 +26,7 @@
 
         public function register_user($db, $user, $email, $hashed_pass, $avatar, $email_token, $id_user) {
             $sql = "INSERT INTO users (id_user, active, username, passwd, email, token_email, avatar, type) VALUES ('$id_user', 0, '$user', '$hashed_pass', '$email', '$email_token', '$avatar', 'client')";
-            $stmt = $db->ejecutar($sql);
-            return $stmt;
+            return $stmt = $db->ejecutar($sql);
         }
 
         public function select_verify_email($db, $token_email_verify, $type) {
@@ -38,6 +37,11 @@
 
         public function update_verify_email($db, $token_email_verify, $type) {
             $sql = "UPDATE users SET active = 1 WHERE token_email = '$token_email_verify'";
+            return $stmt = $db->ejecutar($sql);
+        }
+
+        public function select_user($db, $user) {
+            $sql = "SELECT * FROM users WHERE username = '$user'";
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }

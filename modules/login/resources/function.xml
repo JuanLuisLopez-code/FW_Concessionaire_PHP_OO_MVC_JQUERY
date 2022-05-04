@@ -12,4 +12,12 @@
         <name>verify_email</name>
         <uri>verify_email</uri>
     </function>
+    <function>
+        <name>login_c</name>
+        <uri>login_c</uri>
+    </function>
+    <function>
+        <name>token_c</name>
+        <uri>token_c</uri>
+    </function>
 </functions>

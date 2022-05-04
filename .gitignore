@@ -2,3 +2,5 @@
 utils/vendor
 utils/mail.ini
 model/db.ini
+model/jwt.ini
+**.ini
