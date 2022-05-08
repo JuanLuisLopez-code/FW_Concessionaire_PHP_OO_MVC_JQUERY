@@ -16,12 +16,14 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
 
     <!--========== MAIN JS ==========-->
     <script src="<?php echo SITE_PATH ?>view/js/main.js"></script>
     <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_login.js"></script>
     <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_register.js"></script>
     <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_recovery.js"></script>
+    <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_social_login.js"></script>
 
 </head>
 

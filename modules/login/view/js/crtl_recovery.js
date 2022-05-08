@@ -1,6 +1,7 @@
 function recovery() {
     $(document).on('click', '.recovery', function() {
         $('.primera').hide();
+        $('.recovery_wrap').show();
         key_recovery();
         button_recovery();
     })

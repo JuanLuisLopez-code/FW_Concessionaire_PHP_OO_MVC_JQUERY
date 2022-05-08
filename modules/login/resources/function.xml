@@ -44,4 +44,8 @@
         <name>recovery_pass</name>
         <uri>recovery_pass</uri>
     </function>
+    <function>
+        <name>social_singin</name>
+        <uri>social_singin</uri>
+    </function>
 </functions>

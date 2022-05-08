@@ -54,6 +54,10 @@
         public function get_recovery_pass($email, $password) {
             return $this -> bll -> get_recovery_pass_BLL($email, $password);
         }
+
+        public function get_social_singin($args) {
+            return $this -> bll -> get_social_singin_BLL($args);
+        }
     }
 ?>
 

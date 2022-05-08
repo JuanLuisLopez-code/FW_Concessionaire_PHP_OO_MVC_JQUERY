@@ -139,4 +139,20 @@
 				}
 			}
 		}
+
+		public function get_social_singin_BLL($args) {
+			$username = $args[0];
+			$email = $args[1];
+			$id_user = $args[2];
+			if(!$this -> dao -> validate_email ($this->db, $email)){
+				if ($this -> dao -> insert_social($this->db, $username, $email, $id_user)){
+					$_SESSION['username'] = $username;
+					$_SESSION['tiempo'] = time();
+					return middleware::midd_encode($username);;
+				}
+			}else{
+				echo json_encode("Email en uso");
+				exit;
+			}
+		}
 	}

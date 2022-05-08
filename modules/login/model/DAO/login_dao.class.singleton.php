@@ -62,5 +62,10 @@
             return $db->listar($stmt);
         }
 
+        public function insert_social($db, $username, $email, $id_user) {
+            $sql = "INSERT INTO users (id_user, active, username, email, type) VALUES ('$id_user', 1, '$username', '$email', 'client')";
+            return $stmt = $db->ejecutar($sql);
+        }
+
     }
 ?>

@@ -84,6 +84,7 @@ function validate_login() {
 }
 
 $(document).ready(function() {
+    $('.recovery_wrap').hide();
     key_login();
     button_login();
 });

@@ -43,5 +43,9 @@
         function recovery_pass() {
             echo json_encode(common::load_model('login_model', 'get_recovery_pass', $_POST['email_recovery'], $_POST['passwd_recovery']));
         }
+
+        function social_singin() {
+            echo json_encode(common::load_model('login_model', 'get_social_singin', [$_POST['username'], $_POST['email'], $_POST['user_id']]));
+        }
     }
 ?>
