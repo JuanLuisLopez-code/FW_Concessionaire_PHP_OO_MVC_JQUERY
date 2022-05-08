@@ -18,7 +18,7 @@
 
 
 
-<div class="login-wrap">
+<div class="login-wrap primera">
     <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="hr"></div>
                         <div class="foot-lnk">
-                            <a href="#forgot">Forgot Password?</a>
+                            <a class="recovery">Forgot Password?</a>
                         </div>
                     </div>
                 </div>
@@ -84,6 +84,33 @@
           </div>
         </div>
       </form>
+        </div>
     </div>
-  </div>
 </div>
+<div class="login-wrap" style="padding: 7em;">
+    <div class="login-form">
+        <form id="recovery__form" method="post">
+            <div class="form__content">
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <label for="email_recovery" class="label">Email</label>
+                            <input id="email_recovery" type="email" class="input" name="email_recovery" value="">
+                            <font color="red">
+                                <span id="error_email_recovery" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <label for="pass_recovery" class="label">Password Recovery</label>
+                            <input id="pass_recovery" type="password" class="input" data-type="password" name="passwd_recovery">
+                            <font color="red">
+                                <span id="error_pass_recovery" class="error"></span>
+                            </font>
+                        </div>
+                        <div class="group">
+                            <input type="button" class="button" id="recovery" value="Send Recovery">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

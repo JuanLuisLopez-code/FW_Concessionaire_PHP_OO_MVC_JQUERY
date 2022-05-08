@@ -18,7 +18,7 @@
             return $db->listar($stmt);
         }
 
-        public function validate_email($db, $user, $email) {
+        public function validate_email($db, $email) {
             $sql = "SELECT * FROM users WHERE email = '$email'";
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
@@ -40,8 +40,24 @@
             return $stmt = $db->ejecutar($sql);
         }
 
+        public function update_use_email($db, $email) {
+            $sql = "UPDATE users SET active = 0 WHERE email = '$email'";
+            return $stmt = $db->ejecutar($sql);
+        }
+
         public function select_user($db, $user) {
             $sql = "SELECT * FROM users WHERE username = '$user'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function recovery_password($db, $email, $hashed_pass) {
+            $sql = "UPDATE users SET passwd = '$hashed_pass' WHERE email = '$email' ";
+            return $stmt = $db->ejecutar($sql);
+        }
+
+        public function take_token($db, $email) {
+            $sql = "SELECT token_email FROM users WHERE email = '$email'";
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }

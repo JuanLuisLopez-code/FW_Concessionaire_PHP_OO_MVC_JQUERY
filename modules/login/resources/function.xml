@@ -20,4 +20,28 @@
         <name>token_c</name>
         <uri>token_c</uri>
     </function>
+    <function>
+        <name>actividad</name>
+        <uri>actividad</uri>
+    </function>
+    <function>
+        <name>controluser</name>
+        <uri>controluser</uri>
+    </function>
+    <function>
+        <name>refresh_token</name>
+        <uri>refresh_token</uri>
+    </function>
+    <function>
+        <name>refresh_session</name>
+        <uri>refresh_session</uri>
+    </function>
+    <function>
+        <name>delete_session</name>
+        <uri>delete_session</uri>
+    </function>
+    <function>
+        <name>recovery_pass</name>
+        <uri>recovery_pass</uri>
+    </function>
 </functions>

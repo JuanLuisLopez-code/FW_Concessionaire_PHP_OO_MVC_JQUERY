@@ -39,6 +39,13 @@ function load_path() {
             .then(function(data) {
                 toastr.success('Email verificado, ya puede loguearse');
             })
+    } else if (path[3] === 'recovery') {
+        let token_email_verify = path[2];
+        let type = path[3];
+        ajaxPromise('index.php?page=login&op=verify_email', 'POST', 'JSON', { token_email_verify, type })
+            .then(function(data) {
+                toastr.success('Contraseña cambiada, ya puede loguearse');
+            })
     }
 }
 
@@ -47,8 +54,6 @@ function check_login() {
     if (token) {
         ajaxPromise('?page=login&op=token_c', 'POST', 'JSON', { 'token': token })
             .then(function(data) {
-                console.log(data)
-                console.log("arriba check_login")
                 if (data == 'Tiempo excedido') {
                     localStorage.removeItem('token');
                 } else {
@@ -73,7 +78,7 @@ function log_out() {
     $('#log_out').remove();
     $('#move_login').remove();
     $('<li><a class="hsubs" id="move_login">Indetify</a></li>').appendTo('.nav');
-    // ajaxPromise('modules/login/crtl/crtl_login.php?op=delete_session', 'POST', 'JSON')
+    ajaxPromise('index.php?page=login&op=delete_session', 'POST', 'JSON')
     toastr["success"]("Session cerrada");
     location.reload();
     localStorage.removeItem('move');
@@ -82,9 +87,54 @@ function log_out() {
 }
 
 
+
+/*==================== SECURITY ====================*/
+
+function check_login_interval() {
+    ajaxPromise('index.php?page=login&op=actividad', 'POST', 'JSON')
+        .then(function(data) {
+            if (data != "activo") {
+                log_out();
+            }
+        })
+}
+
+function protecturl() {
+    var token = localStorage.getItem('token');
+    ajaxPromise('index.php?page=login&op=controluser', 'POST', 'JSON', { 'token': token })
+        .then(function(data) {
+            if (data == "valido") {} else if (data == "anonimo") {
+                if (localStorage.getItem('token')) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('move');
+                    log_out();
+                }
+            }
+        })
+}
+
+function refresh_token() {
+    if (localStorage.getItem('token')) {
+        var token = localStorage.getItem('token');
+        ajaxPromise('index.php?page=login&op=refresh_token', 'POST', 'JSON', { 'token': token })
+            .then(function(data) {
+                localStorage.setItem('token', data);
+            })
+    }
+}
+
+function refresh_session() {
+    ajaxPromise('index.php?page=login&op=refresh_session', 'POST', 'JSON')
+}
+
 $(document).ready(function() {
     load_path();
     move_login();
     move_shop();
     check_login();
+    setInterval(function() {
+        refresh_session();
+        refresh_token();
+    }, 600000);
+    protecturl();
 })

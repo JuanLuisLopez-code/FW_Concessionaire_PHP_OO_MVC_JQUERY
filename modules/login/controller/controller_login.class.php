@@ -19,5 +19,29 @@
         function token_c() {
             echo json_encode(common::load_model('login_model', 'get_token_c', $_POST['token']));
         }
+
+        function actividad() {
+            echo json_encode(common::load_model('login_model', 'get_actividad'));
+        }
+
+        function controluser() {
+            echo json_encode(common::load_model('login_model', 'get_controluser'));
+        }
+
+        function refresh_token() {
+            echo json_encode(common::load_model('login_model', 'get_refresh_token'));
+        }
+
+        function refresh_session() {
+            echo json_encode(common::load_model('login_model', 'get_refresh_session'));
+        }
+
+        function delete_session() {
+            echo json_encode(common::load_model('login_model', 'get_delete_session'));
+        }
+        
+        function recovery_pass() {
+            echo json_encode(common::load_model('login_model', 'get_recovery_pass', $_POST['email_recovery'], $_POST['passwd_recovery']));
+        }
     }
 ?>

@@ -1,5 +1,4 @@
 <?php
-@session_start();
 	class login_bll {
 		private $dao;
 		private $db;
@@ -21,7 +20,7 @@
 			if ($this -> dao -> validate_user ($this->db, $user, $email)){
 				echo json_encode("Usuarios existente");
 				exit;
-			}elseif($this -> dao -> validate_email ($this->db, $user, $email)){
+			}elseif($this -> dao -> validate_email ($this->db, $email)){
 				echo json_encode("Email existente");
 				exit;
 			}else{
@@ -57,6 +56,7 @@
 					return middleware::midd_encode($rdo[0]['username']);
 					
                 }else {
+					
                     echo json_encode("contraseña incorrecta");
                     exit;
                 }
@@ -77,6 +77,66 @@
 				return $this -> dao -> select_user ($this->db, $user_check->name);
 			}
 		}
-		
+
+		public function get_actividad_BLL() {
+			if (!isset($_SESSION["tiempo"])) {  
+				return("inactivo_fatal");
+		  	} else {
+			  	if((time() - $_SESSION["tiempo"]) >= 1800) {  
+					return("inactivo");
+			  	}else{
+					return("activo");
+			  }
+		  }
+		}
+
+		public function get_controluser_BLL() {
+			$token = $_POST['token'];
+			if ($token){
+				$check_control = middleware::midd_decode($token);
+				$name_token = json_decode($check_control);	
+			}
+			if(isset ($_SESSION['username'])&&($_SESSION['username'])==$name_token->name){
+				echo json_encode("valido");
+				exit;
+			}
+				echo json_encode("anonimo");
+				exit;
+		}
+
+		public function get_refresh_token_BLL() {
+			$token = $_POST['token'];
+
+			if ($token){
+				$check_control = middleware::midd_decode($token);
+				$name_token = json_decode($check_control);
+				$user = $name_token->name;            
+				$token_restored = middleware::midd_encode($user);
+				echo json_encode($token_restored);
+				exit;
+			}     
+		}
+
+		public function get_refresh_session_BLL() {
+			session_regenerate_id();
+        	echo json_encode("sesion restaurada");
+        	exit;
+		}
+
+		public function get_delete_session_BLL() {
+			setcookie("PHPSESSID","",time()-3600,"/");
+        	echo json_encode("sesion destruida");
+        	exit;
+		}
+
+		public function get_recovery_pass_BLL($email, $password) {
+			if($this -> dao -> validate_email ($this->db, $email)){
+				if ($this -> dao -> update_use_email($this ->db, $email)){
+					$hashed_pass = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
+					$email_token_register = $this -> dao -> take_token($this->db, $email);
+					mail::recovery_email($email, $email_token_register[0]['token_email']);
+					return ($this-> dao -> recovery_password($this->db, $email, $hashed_pass));
+				}
+			}
+		}
 	}
-?>

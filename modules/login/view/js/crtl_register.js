@@ -3,13 +3,14 @@ function register() {
         var array = $('#register__form').serialize();
         ajaxPromise('index.php?page=login&op=register_c', 'POST', 'JSON', array)
             .then(function(data) {
+                console.log(data)
                 if (data == "Usuarios existente") {
                     $("#error_username").html('El usuario ya esta registrado');
                 } else if (data == "Email existente") {
                     $("#error_email").html('El email ya esta registrado');
                 } else {
                     toastr.success('Porfavor verifique su email');
-                    setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 5000);
+                    // setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 5000);
                 }
             });
     }

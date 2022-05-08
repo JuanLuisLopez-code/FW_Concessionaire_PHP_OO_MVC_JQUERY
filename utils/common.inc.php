@@ -26,6 +26,7 @@
                 require_once ($path);
                 if (method_exists($model, $function)) {
                     $obj = $model::getInstance();
+                    // return $obj;
                     if ($args != null) {
                         return call_user_func(array($obj, $function), $args, $total_prod, $items_page);
                     }

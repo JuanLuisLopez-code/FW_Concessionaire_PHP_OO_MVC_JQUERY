@@ -21,7 +21,7 @@
     <script src="<?php echo SITE_PATH ?>view/js/main.js"></script>
     <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_login.js"></script>
     <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_register.js"></script>
-
+    <script src="<?php echo SITE_PATH ?>modules/login/view/js/crtl_recovery.js"></script>
 
 </head>
 

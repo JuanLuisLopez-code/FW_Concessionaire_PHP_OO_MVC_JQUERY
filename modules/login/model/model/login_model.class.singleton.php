@@ -4,11 +4,10 @@
         static $_instance;
         
         function __construct() {
-            $this -> bll = login_bll::getInstance();
-        }
+			$this -> bll = login_bll::getInstance();
+		}
  
         public static function getInstance() {
-            
             if (!(self::$_instance instanceof self)) {
                 self::$_instance = new self();
             }
@@ -24,11 +23,36 @@
         }
 
         public function get_login($user, $pass) {
+            
             return $this -> bll -> get_login_BLL($user, $pass);
         }
 
         public function get_token_c($token) {
             return $this -> bll -> get_token_c_BLL($token);
+        }
+
+        public function get_actividad() {
+            return $this -> bll -> get_actividad_BLL();
+        }
+
+        public function get_controluser() {
+            return $this -> bll -> get_controluser_BLL();
+        }
+
+        public function get_refresh_token() {
+            return $this -> bll -> get_refresh_token_BLL();
+        }
+
+        public function get_refresh_session() {
+            return $this -> bll -> get_refresh_session_BLL();
+        }
+
+        public function get_delete_session() {
+            return $this -> bll -> get_delete_session_BLL();
+        }
+
+        public function get_recovery_pass($email, $password) {
+            return $this -> bll -> get_recovery_pass_BLL($email, $password);
         }
     }
 ?>
