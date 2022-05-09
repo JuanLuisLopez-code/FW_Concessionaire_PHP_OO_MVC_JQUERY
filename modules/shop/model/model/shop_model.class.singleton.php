@@ -45,5 +45,17 @@
         public function get_visitas($args) {          
             return $this -> bll -> get_visitas_BLL($args);
         }
+
+        public function get_control_likes($args) {          
+            return $this -> bll -> get_control_likes_BLL($args);
+        }
+
+        public function get_load_likes($token) {          
+            return $this -> bll -> get_load_likes_BLL($token);
+        }
+
+        public function get_load_likes_details($args) {          
+            return $this -> bll -> get_load_likes_details_BLL($args);
+        }
     }
 ?>

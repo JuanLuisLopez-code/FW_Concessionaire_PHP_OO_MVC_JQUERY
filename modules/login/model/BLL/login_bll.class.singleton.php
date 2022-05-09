@@ -56,7 +56,6 @@
 					return middleware::midd_encode($rdo[0]['username']);
 					
                 }else {
-					
                     echo json_encode("contraseña incorrecta");
                     exit;
                 }
@@ -148,11 +147,12 @@
 				if ($this -> dao -> insert_social($this->db, $username, $email, $id_user)){
 					$_SESSION['username'] = $username;
 					$_SESSION['tiempo'] = time();
-					return middleware::midd_encode($username);;
+					return middleware::midd_encode($username);
 				}
 			}else{
-				echo json_encode("Email en uso");
-				exit;
+					$_SESSION['username'] = $username;
+					$_SESSION['tiempo'] = time();
+					return middleware::midd_encode($username);
 			}
 		}
 	}

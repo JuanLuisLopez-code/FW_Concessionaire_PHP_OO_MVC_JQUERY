@@ -171,5 +171,39 @@
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }
+
+        public function select_user($db, $user) {
+            $sql = "SELECT id_user FROM users WHERE username='$user'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function select_one_likes($db, $user, $id) {
+            $sql = "SELECT * FROM likes WHERE id_user='$user' AND car_id='$id'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function insert_likes($db, $user, $id) {
+            $sql = "INSERT INTO likes (id_user, car_id) VALUES ('$user','$id')";
+            return $stmt = $db->ejecutar($sql);
+        }
+
+        public function delete_likes($db, $user, $id) {
+            $sql = "DELETE FROM `likes` WHERE id_user='$user' AND car_id='$id'";
+            return $stmt = $db->ejecutar($sql);
+        }
+
+        public function select_load_likes($db, $user) {
+            $sql = "SELECT * FROM likes WHERE id_user='$user'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function select_load_likes_details($db, $user, $id) {
+            $sql = "SELECT * FROM likes WHERE id_user='$user' AND car_id='$id'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
     }
 

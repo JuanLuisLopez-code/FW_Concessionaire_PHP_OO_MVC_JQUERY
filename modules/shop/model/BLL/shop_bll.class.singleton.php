@@ -47,5 +47,49 @@
 		public function get_visitas_BLL($args) {
 			return $this -> dao -> select_visitas($this->db, $args);
 		}
+
+		public function get_control_likes_BLL($args) {
+			$token=$args[0];
+			$id=$args[1];
+			if ($token){
+				
+				$check_control = middleware::midd_decode($token);
+				$name_token = json_decode($check_control);
+
+				if ($rdo_id_user = $this -> dao ->select_user($this->db, $name_token->name)){
+					$rdo = $this -> dao ->select_one_likes($this->db, $rdo_id_user[0]['id_user'], $id);
+					if (!$rdo){
+						return $this -> dao -> insert_likes($this -> db, $rdo_id_user[0]['id_user'], $id);
+					}else{           
+						return $this -> dao -> delete_likes($this -> db, $rdo_id_user[0]['id_user'], $id);     
+					}
+				}
+			}  
+		}
+		
+		public function get_load_likes_BLL($token) {
+			if ($token){
+
+				$check_control = middleware::midd_decode($token);
+				$name_token = json_decode($check_control);
+
+				if ($rdo_id_user = $this -> dao ->select_user($this->db, $name_token->name)){
+					return $this -> dao ->select_load_likes($this->db, $rdo_id_user[0]['id_user']);
+				}
+
+			}
+		}
+
+		public function get_load_likes_details_BLL($args) {
+			$token=$args[0];
+			$id=$args[1];
+			if ($token){
+				$check_control = middleware::midd_decode($token);
+				$name_token = json_decode($check_control);
+				if ($rdo_id_user = $this -> dao ->select_user($this->db, $name_token->name)){
+					return $this -> dao ->select_load_likes_details($this->db, $rdo_id_user[0]['id_user'], $id);
+				}
+			}  
+		}
 	}
 ?>

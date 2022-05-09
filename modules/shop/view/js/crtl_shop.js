@@ -25,7 +25,6 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, 
     }
     ajaxPromise(url2, 'POST', 'JSON', { 'filter': filter, 'total_prod': total_prod, 'items_page': items_page })
         .then(function(shop) {
-            console.log(shop);
             $("#containerShop").empty();
             for (row in shop) {
                 $('<div></div>').appendTo('#containerShop')
@@ -66,10 +65,9 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, 
             if (localStorage.getItem('id')) {
                 document.getElementById(move_id).scrollIntoView();
             }
-            // load_likes();
+            load_likes();
             mapBox_all(shop);
         }).catch(function(error) {
-            console.log(error)
             $("#containerShop").empty();
             $('<div></div>').appendTo('#containerShop')
                 .html('<h1>No hay coches con estos filtros</h1>');
@@ -172,7 +170,7 @@ function details(id) {
         }
     })
 }
-//
+
 function moreCars(id, move = 0) {
     var xpage = 3;
     ajaxPromise('modules/shop/crtl/crtl_shop.php?op=moreCars', 'POST', 'JSON', { 'id': id, 'move': move, 'xpage': xpage })
@@ -219,10 +217,10 @@ function moreCars(id, move = 0) {
             $('<h1>No hay más coches</h1>').appendTo('#moreCars')
         });
 }
-//
+
 function visitas(id) {
+    var id = id;
     ajaxPromise('index.php?page=shop&op=visitas', 'POST', 'JSON', { id })
-        .then(function(id) {}).catch(function() {});
 }
 
 function highlight(filter) {
@@ -268,7 +266,7 @@ function print_filters() {
             '<button class="filter_button button_spinner" id="Button_filter">Filter</button>' +
             '<button class="filter_remove" id="Remove_filter">Remove</button>');
 }
-//
+
 function filter_button() {
     $(function() {
         $('.filter_type').change(function() {
@@ -332,7 +330,7 @@ function filter_button() {
         }
     });
 }
-//
+
 function load_details() {
     $(document).on('click', '.link', function() {
         var id = this.getAttribute('id');
@@ -425,7 +423,7 @@ function load_salto(total_prod = 0, items_page = 3) {
             window.location.href = "index.php?modules=exception&op=503&error=fail_salto&type=503";
         });
 }
-//
+
 function load_search(total_prod = 0, items_page = 3) {
     var filters_search = JSON.parse(localStorage.getItem('filters_search'));
     ajaxPromise('index.php?page=shop&op=filters_search', 'POST', 'JSON', { 'filters_search': filters_search, 'total_prod': total_prod, 'items_page': items_page })
@@ -489,7 +487,6 @@ function pagination(filter) {
     }
     ajaxPromise(url, 'POST', 'JSON', { 'filter': filter, 'filtros': filtros, 'filters_search': filters_search })
         .then(function(data) {
-            console.log(data)
             var total_pages = 0;
             var total_prod = data[0].contador;
             if (total_prod >= 3) {
@@ -524,7 +521,7 @@ function pagination(filter) {
 function load_likes() {
     var token = localStorage.getItem('token');
     if (token) {
-        ajaxPromise('modules/shop/crtl/crtl_shop.php?op=load_likes', 'POST', 'JSON', { 'token': token })
+        ajaxPromise('?page=shop&op=load_likes', 'POST', 'JSON', { 'token': token })
             .then(function(data) {
                 for (row in data) {
                     if ($("#" + data[row].car_id).children("i").hasClass("like_white")) {
@@ -539,13 +536,13 @@ function load_likes_details(id) {
     var token = localStorage.getItem('token');
     var id = id.id;
     if (token) {
-        ajaxPromise('modules/shop/crtl/crtl_shop.php?op=load_likes_details', 'POST', 'JSON', { 'token': token, 'id': id })
+        ajaxPromise('?page=shop&op=load_likes_details', 'POST', 'JSON', { 'token': token, 'id': id })
             .then(function(data) {
-                if (id == data.car_id) {
+                if (id == data[0].car_id) {
                     $("#" + data.car_id).children("i").removeClass("like_white").addClass("like_red");
                     $(".like").empty();
                     $('<i id="like" class="like_red fa-heart fa-2x"></i>').appendTo('.like')
-                } else {}
+                } else { console.log("hola") }
             })
     }
 }
@@ -558,7 +555,7 @@ function click_likes() {
         redirect.push(id);
         localStorage.setItem('id', JSON.stringify(redirect));
         if (token) {
-            ajaxPromise("modules/shop/crtl/crtl_shop.php?op=control_likes", 'POST', 'JSON', { 'token': token, 'id': id })
+            ajaxPromise("?page=shop&op=control_likes", 'POST', 'JSON', { 'token': token, 'id': id })
             if ($(this).children("i").hasClass("like_white")) {
                 $(this).children("i").removeClass("like_white").addClass("like_red");
             } else {
@@ -567,10 +564,10 @@ function click_likes() {
         } else {
             if (localStorage.getItem('details')) {
                 toastr['warning']("Necesitas loguearte para dar like");
-                setTimeout(' window.location.href = "index.php?modules=login&op=login"; ', 2000);
+                setTimeout(' window.location.href = "?page=login&op=view"; ', 2000);
             } else {
                 toastr['warning']("Necesitas loguearte para dar like");
-                setTimeout(' window.location.href = "index.php?modules=login&op=login"; ', 2000);
+                setTimeout(' window.location.href = "?page=login&op=view"; ', 2000);
             }
         }
     });
@@ -581,5 +578,5 @@ $(document).ready(function() {
     print_filters();
     filter_button();
     pagination();
-    // click_likes();
+    click_likes();
 });

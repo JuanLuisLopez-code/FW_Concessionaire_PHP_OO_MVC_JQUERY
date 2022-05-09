@@ -36,5 +36,17 @@
         function visitas() {
             echo json_encode(common::load_model('shop_model', 'get_visitas', $_POST['id']));
         }
+
+        function control_likes() {
+            echo json_encode(common::load_model('shop_model', 'get_control_likes', [$_POST['token'], $_POST['id']]));
+        }
+
+        function load_likes() {
+            echo json_encode(common::load_model('shop_model', 'get_load_likes', $_POST['token']));
+        }
+
+        function load_likes_details() {
+            echo json_encode(common::load_model('shop_model', 'get_load_likes_details', [$_POST['token'], $_POST['id']]));
+        }
     }
 ?>

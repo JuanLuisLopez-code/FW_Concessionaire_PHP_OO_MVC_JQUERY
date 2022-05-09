@@ -12,7 +12,7 @@ function button_log_google() {
 
 function button_log_github() {
     $('#log_github').on('click', function(e) {
-        console.log("hola")
+        console.log("function GitHub")
         var authService = firebase.auth();
         var provider = new firebase.auth.GithubAuthProvider();
         provider.addScope('email');
@@ -33,12 +33,9 @@ function login_social_singin(user_data) {
     console.log(user);
     ajaxPromise('?page=login&op=social_singin', 'POST', 'JSON', { 'username': username, 'email': email, 'user_id': user_id, })
         .then(function(data) {
-            console.log(data);
-            if (data == 'Email en uso') {
-                toastr.error('Ese email ya esta registrado');
-            } else {
-                localStorage.setItem('token', data);
-            }
+            localStorage.setItem('token', data);
+            toastr["success"]("Logueado con exito");
+            setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 2000);
         })
 }
 
