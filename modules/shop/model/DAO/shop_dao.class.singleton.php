@@ -168,8 +168,7 @@
             $sql = "UPDATE car c
             SET visitas = visitas+1
             WHERE c.id = '$args'";
-            $stmt = $db->ejecutar($sql);
-            return $db->listar($stmt);
+            return $stmt = $db->ejecutar($sql);
         }
 
         public function select_user($db, $user) {

@@ -12,7 +12,6 @@ function button_log_google() {
 
 function button_log_github() {
     $('#log_github').on('click', function(e) {
-        console.log("function GitHub")
         var authService = firebase.auth();
         var provider = new firebase.auth.GithubAuthProvider();
         provider.addScope('email');
