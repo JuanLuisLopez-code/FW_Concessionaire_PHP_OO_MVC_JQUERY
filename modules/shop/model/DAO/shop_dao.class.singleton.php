@@ -204,5 +204,66 @@
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }
+
+        public function redirect($db, $filtros,$total_prod, $items_page){
+            $sql = "SELECT *
+            FROM car c, brand b, car_img ci, categoria ca, type t
+            WHERE c.marca = b.id_brand AND c.categoria = ca.id_categoria 
+            AND c.combustible = t.id_type AND c.id = ci.car AND ci.img LIKE '%1%'";
+    
+    
+            if ($filtros[0]['categoria']){
+                $prueba = $filtros[0]['categoria'][0];
+                $sql.= " AND ca.cat_name = '$prueba'";
+            }
+            else if($filtros[0]['type']) {
+                $prueba = $filtros[0]['type'][0];
+                $sql.= " AND t.type_name = '$prueba'";
+            }
+            else if($filtros[0]['marca']) {
+                $prueba = $filtros[0]['marca'][0];
+                $sql.= " AND c.marca = '$prueba'";
+            }
+            $sql.= " LIMIT $total_prod, $items_page";
+           
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function select_count_home($db, $filtros) {
+
+            $sql = "SELECT COUNT(*) contador
+            FROM car c, brand b, car_img ci, categoria ca, type t
+            WHERE c.marca = b.id_brand AND c.categoria = ca.id_categoria 
+            AND c.combustible = t.id_type AND c.id = ci.car AND ci.img LIKE '%1%'";
+    
+            if ($filtros[0]['categoria']){
+                $prueba = $filtros[0]['categoria'][0];
+                $sql.= " AND ca.cat_name = '$prueba'";
+            }
+            else if($filtros[0]['type']) {
+                $prueba = $filtros[0]['type'][0];
+                $sql.= " AND t.type_name = '$prueba'";
+            }
+            else if($filtros[0]['marca']) {
+                $prueba = $filtros[0]['marca'][0];
+                $sql.= " AND c.marca = '$prueba'";
+            }
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function select_moreCars($db, $args) {
+            $id = $args[0];
+            $move= $args[1];
+            $xpage= $args[2];
+            $sql = " SELECT ca.cat_name, c.*, b.brand_name, t.type_name
+            FROM car c, categoria ca, brand b, type t
+            WHERE c.categoria = (SELECT cc.categoria
+                                FROM car cc
+                                WHERE cc.id = '$id') AND c.categoria = ca.id_categoria AND b.id_brand = c.marca AND t.id_type = c.combustible LIMIT $move, $xpage";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
     }
 

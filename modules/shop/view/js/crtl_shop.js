@@ -11,6 +11,7 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, 
     } else {
         if (localStorage.getItem('move')) {
             total_prod = JSON.parse(localStorage.getItem('move'))[1];
+            console.log(total_prod)
             if (localStorage.getItem('id')) {
                 var move_id = JSON.parse(localStorage.getItem('id'))
             }
@@ -26,6 +27,7 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, 
     ajaxPromise(url2, 'POST', 'JSON', { 'filter': filter, 'total_prod': total_prod, 'items_page': items_page })
         .then(function(shop) {
             $("#containerShop").empty();
+            console.log(shop)
             for (row in shop) {
                 $('<div></div>').appendTo('#containerShop')
                     .html(
@@ -68,6 +70,7 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, 
             load_likes();
             mapBox_all(shop);
         }).catch(function(error) {
+            console.log(error)
             $("#containerShop").empty();
             $('<div></div>').appendTo('#containerShop')
                 .html('<h1>No hay coches con estos filtros</h1>');
@@ -96,7 +99,7 @@ function shopAll() {
 }
 
 function details(id) {
-    $("#pagination").empty();
+    $("#pagination").hide();
     $("#containerShop").empty();
     $(document).on('click', '.back_button', function() {
         location.reload();
@@ -172,8 +175,9 @@ function details(id) {
 }
 
 function moreCars(id, move = 0) {
+    $("#pagination").empty();
     var xpage = 3;
-    ajaxPromise('modules/shop/crtl/crtl_shop.php?op=moreCars', 'POST', 'JSON', { 'id': id, 'move': move, 'xpage': xpage })
+    ajaxPromise('index.php?page=shop&op=moreCars', 'POST', 'JSON', { 'id': id, 'move': move, 'xpage': xpage })
         .then(function(data) {
             for (row in data) {
                 $('<div></div>').appendTo('#moreCars')
@@ -381,8 +385,9 @@ function mapBox(id) {
 
 function load_salto(total_prod = 0, items_page = 3) {
     var filtros = JSON.parse(localStorage.getItem('filters'));
-    ajaxPromise('modules/shop/crtl/crtl_shop.php?op=redirect', 'POST', 'JSON', { 'filtros': filtros, 'total_prod': total_prod, 'items_page': items_page })
+    ajaxPromise('index.php?page=shop&op=redirect', 'POST', 'JSON', { 'filtros': filtros, 'total_prod': total_prod, 'items_page': items_page })
         .then(function(shop) {
+            console.log(shop)
             $("#containerShop").empty();
             for (row in shop) {
                 $('<div></div>').appendTo('#containerShop')
@@ -420,7 +425,7 @@ function load_salto(total_prod = 0, items_page = 3) {
             }
             mapBox_all(shop);
         }).catch(function() {
-            window.location.href = "index.php?modules=exception&op=503&error=fail_salto&type=503";
+            // window.location.href = "index.php?modules=exception&op=503&error=fail_salto&type=503";
         });
 }
 
@@ -479,7 +484,7 @@ function pagination(filter) {
     if (filters_search) {
         var url = "index.php?page=shop&op=count_search";
     } else if (filtros) {
-        var url = "modules/shop/crtl/crtl_shop.php?op=count_home";
+        var url = "index.php?page=shop&op=count_home";
     } else if (filter != undefined) {
         var url = "index.php?page=shop&op=count_filter";
     } else {
@@ -507,6 +512,8 @@ function pagination(filter) {
                 localStorage.removeItem('id');
                 if (filters_search) {
                     load_search(total_prod, 3);
+                } else if (filtros != undefined) {
+                    load_salto(total_prod, 3);
                 } else if (filter != undefined) {
                     ajaxForSearch("index.php?page=shop&op=filter", filter, total_prod, 3);
                 } else {

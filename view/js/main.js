@@ -27,6 +27,7 @@ function move_shop() {
         window.location.href = "index.php?page=shop&op=view";
         localStorage.removeItem('details')
         localStorage.removeItem('move');
+        localStorage.removeItem('id');
     });
 }
 

@@ -91,5 +91,20 @@
 				}
 			}  
 		}
+
+		public function get_redirect_BLL($args) {
+			$filtros = $args[0];
+			$total_prod = $args[1];
+			$items_page = $args[2];
+			return $this -> dao -> redirect($this -> db, $filtros, $total_prod, $items_page);
+		}
+
+		public function get_count_home_BLL($filtros) {
+			return $this -> dao -> select_count_home($this->db, $filtros);
+		}
+
+		public function get_moreCars_BLL($args) {
+			return $this -> dao -> select_moreCars($this->db, $args);
+		}
 	}
 ?>

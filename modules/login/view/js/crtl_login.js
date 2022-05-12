@@ -31,7 +31,6 @@ function token_c() {
                 toastr['success']("Volviendo a los detalles del coche");
                 setTimeout(' window.location.href = "index.php?page=shop&op=view"; ', 2000);
             } else if (localStorage.getItem('move')) {
-                console.log("hola")
                 var move = JSON.parse(localStorage.getItem('move'));
                 toastr['success']("Volviendo a las compras");
                 setTimeout(' window.location.href = "' + move[0] + '"; ', 2000);

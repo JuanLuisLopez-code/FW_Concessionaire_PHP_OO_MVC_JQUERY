@@ -33,8 +33,17 @@ function login_social_singin(user_data) {
     ajaxPromise('?page=login&op=social_singin', 'POST', 'JSON', { 'username': username, 'email': email, 'user_id': user_id, })
         .then(function(data) {
             localStorage.setItem('token', data);
-            toastr["success"]("Logueado con exito");
-            setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 2000);
+            if (localStorage.getItem('details')) {
+                toastr['success']("Volviendo a los detalles del coche");
+                setTimeout(' window.location.href = "index.php?page=shop&op=view"; ', 2000);
+            } else if (localStorage.getItem('move')) {
+                var move = JSON.parse(localStorage.getItem('move'));
+                toastr['success']("Volviendo a las compras");
+                setTimeout(' window.location.href = "' + move[0] + '"; ', 2000);
+            } else {
+                toastr["success"]("Logueado con exito");
+                setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 2000);
+            }
         })
 }
 

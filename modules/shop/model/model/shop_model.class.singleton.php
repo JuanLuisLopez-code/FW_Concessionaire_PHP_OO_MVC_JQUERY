@@ -57,5 +57,17 @@
         public function get_load_likes_details($args) {          
             return $this -> bll -> get_load_likes_details_BLL($args);
         }
+
+        public function get_redirect($args) {          
+            return $this -> bll -> get_redirect_BLL($args);
+        }
+
+        public function get_count_home($filtros) {          
+            return $this -> bll -> get_count_home_BLL($filtros);
+        }
+        
+        public function get_moreCars($args) {          
+            return $this -> bll -> get_moreCars_BLL($args);
+        }
     }
 ?>

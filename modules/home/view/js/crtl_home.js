@@ -69,21 +69,21 @@ function click() {
         filters.push({ "marca": [this.getAttribute('id')] });
         localStorage.removeItem('filters');
         localStorage.setItem('filters', JSON.stringify(filters));
-        window.location.href = 'index.php?modules=shop&op=list';
+        window.location.href = 'index.php?page=shop&op=view';
     })
     $(document).on("click", '.estado', function() {
         var filters = [];
         filters.push({ "categoria": [this.getAttribute('id')] });
         localStorage.removeItem('filters');
         localStorage.setItem('filters', JSON.stringify(filters));
-        window.location.href = 'index.php?modules=shop&op=list';
+        window.location.href = 'index.php?page=shop&op=view';
     })
     $(document).on("click", '.type', function() {
         var filters = [];
         filters.push({ "type": [this.getAttribute('id')] });
         localStorage.removeItem('filters');
         localStorage.setItem('filters', JSON.stringify(filters));
-        window.location.href = 'index.php?modules=shop&op=list';
+        window.location.href = 'index.php?page=shop&op=view';
     })
 }
 
@@ -177,7 +177,7 @@ $(document).ready(function() {
     loadSlider();
     loadCatCategory();
     loadCatType();
-    // click();
+    click();
     // getSuggestions();
 
 });

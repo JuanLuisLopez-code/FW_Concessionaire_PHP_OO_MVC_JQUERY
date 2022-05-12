@@ -48,4 +48,16 @@
         <name>load_likes_details</name>
         <uri>load_likes_details</uri>
     </function>
+    <function>
+        <name>redirect</name>
+        <uri>redirect</uri>
+    </function>
+    <function>
+        <name>count_home</name>
+        <uri>count_home</uri>
+    </function>
+    <function>
+        <name>moreCars</name>
+        <uri>moreCars</uri>
+    </function>
 </functions>
