@@ -11,13 +11,10 @@ This application have the following modules.
 
 Module | Description
 :--- | :---
-Home | Main page of the application where you can see two carrousels with the categories and the plataforms of the products.
-Shop | Show all the videogames where you can use a filtering system by price slider, age recomended and genre.
-Login | It allows you to register and login in the application, it sent you an email when you register with the form of the application and you can recover your password if you want to change it or you forget your password.
-Cart | You can purchase items and manage your cart. The cart is saved in a table of the database. When you make the checkout the order it save the order lines in one table and the order in other table.
-Search | This module is implemented in all the app where you can search for the name of the products.
-Translate | This module is implemented in the headbar, it translates using JSON files. Languages: spanish, english and valencian.
-CRUD | This module allows you to modify the database.
+Home | Main page of the application where you can see a carousel with the categories and platforms of the products and books related to cars through
+Shop | Shows the list of total cars that are for sale, being able to filter by categories, brands, type of fuel, contains a map where you can see the location and a button to enter to see more details of the car with a carousel of images, both in details As in the general list, users can leave their likes, and the list is auto-ordered through the number of visits of each car.
+Login | Site where you can register, log in or change your password, you can log in through an email or google or github, each registration made will send an email to confirm your account
+Search | This module is implemented in the menu, and can be used throughout the application, 2 filters for category and type of fuel and a location autocomplete, clicking the search button will take you directly to the shop with those filters applied
 
 ## Technologies
 
