@@ -10,7 +10,7 @@ function register() {
                     $("#error_email").html('El email ya esta registrado');
                 } else {
                     toastr.success('Porfavor verifique su email');
-                    // setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 5000);
+                    setTimeout(' window.location.href = "index.php?page=home&op=view"; ', 5000);
                 }
             });
     }

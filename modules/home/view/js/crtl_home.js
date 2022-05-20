@@ -178,6 +178,6 @@ $(document).ready(function() {
     loadCatCategory();
     loadCatType();
     click();
-    // getSuggestions();
+    getSuggestions();
 
 });

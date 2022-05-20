@@ -36,8 +36,6 @@ function ajaxForSearch(durl, sData = undefined, total_prod = 0, items_page = 3, 
                         '<span class="spinner"></span>' +
                         '</div >' +
                         '</div > ' +
-                        '</div>' +
-                        '</div>' +
                         '<div class="page">' +
                         '<section class="section section-md bg-white">' +
                         '<div class="shell">' +
@@ -317,7 +315,7 @@ function filter_button() {
             pagination(filter);
         } else {
             ajaxForSearch("index.php?page=shop&op=shopAll");
-        }
+        }	
         highlight(filter);
     });
     $(document).on('click', '.filter_remove', function() {
